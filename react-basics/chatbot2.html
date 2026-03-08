@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+       function ChatInput() {
+        return(
+         <>
+        <input type="text" placeholder = "Enter your text here" />
+        <button>Send</button>
+         </>
+        );
+       }
+      const [chatMessages, setChatMessages] =  React.useState([
+                {message: "Hello Chatbot", sender: "user", id: "id1"},
+                {message: "Hello! How can I help you?", sender: "robot", id: "id2"},
+                {message: "can you get me today's date?", sender: "user", id: "id3"},
+                {message: "today is 19th of February", sender: "robot", id: "id4"}
+            ]);
+
+       function SendMessage() {
+        setChatMessages([...chatMessages, {message:"test", sender:"user", id:crypto.randomUUID()}]);
+       }
+
+       function ChatMessages() {
+        return(
+            <div>
+
+                <button onclick = {SendMessage}>Send</button>
+                
+            </div>
+        )
+       }
+
+       function App() {
+        <>
+        <ChatInput />
+        <ChatMessages 
+        message = {chatMessage.message}
+        sender = {chatMessage.sender}
+        />
+        </>
+
+       }
+
+    </script>
+  </body>
+</html>

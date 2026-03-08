@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        button {
+            background-color: rgb(25, 135, 84);
+            color: white;
+            padding: 12px 20px;
+            margin-left: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .app-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(222,222,222);
+        }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script type="text/babel">
+       function App() {
+        const [click, setclick] = React.useState(0);
+        const buttonRef = React.useRef(null);
+        function AutoClick() {
+            const buttonElem = buttonRef.current;
+            if (buttonElem) {
+               setInterval(() => {
+                buttonElem.click();
+               }, 1000);
+            }
+        }
+
+        return(
+            <div className="app-container">
+                <button ref={buttonRef} onClick={() => setclick(click + 1)}>{click === 1 ? "Clicked 1 time" : `Clicked ${click} times`}</button>
+                <button onClick={() => setclick(0)}>Reset</button>
+                <button onClick={AutoClick}>Auto Click</button>
+
+            </div>
+        )
+    }
+         const container = document.querySelector('.js-container');
+            const root = ReactDOM.createRoot(container);
+            root.render(<App />);
+    </script>
+  </body>
+</html>
